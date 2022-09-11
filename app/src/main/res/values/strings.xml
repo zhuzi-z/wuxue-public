@@ -1,0 +1,59 @@
+<resources>
+    <string name="app_name">吾学</string>
+    <string name="info_tab_announcement">通知</string>
+    <string name="info_tab_lecture">论坛</string>
+    <string name="info_tab_movie">电影</string>
+    <string name="unhandle_exception"><![CDATA[<div><center><b>出错啦！<br />我也不知道怎么回事，你自己看着办吧…</b></center></div>]]></string>
+    <string name="network_error">网络错误</string>
+    <string name="no_calendar"><![CDATA[<center><big><b>尚无资料</b></big></center>]]></string>
+    <!-- 电影 -->
+    <string name="movie_type"><b>类型：</b></string>
+    <string name="movie_actors"><b>主演：</b></string>
+    <string name="movie_time"><b>时间：</b></string>
+    <string name="movie_place"><b>地点：</b></string>
+    <string name="movie_storyline"><b>剧情简介\n</b></string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="movie_poster">Poster</string>
+    <string name="yellow_page_dial_to">前往拨号</string>
+    <string name="unread_info_clear_all">清除所有</string>
+    <string name="clear_all_button">ClearAll</string>
+    <string name="title_activity_bottom_navigation">BottomNavigationActivity</string>
+
+    <!-- 成绩 -->
+    <string name="score_all">全部</string>
+    <string name="score_name">课程</string>
+    <string name="score_credit">学分</string>
+    <string name="score_gpa">分数/GPA</string>
+    <string name="score_back2schedule">课表</string>
+    <string name="score_total">课程总数：</string>
+    <string name="score_avgScore">平均分</string>
+    <string name="login_username">学号</string>
+    <string name="login_password">密码</string>
+    <string name="login_btn">登录</string>
+    <string name="login_hint_username">学号</string>
+    <string name="login_hint_password">密码</string>
+    <string name="title_schedule_table">课表</string>
+    <string name="title_toolkit">工具</string>
+    <string name="title_setting">我的</string>
+    <string name="lib_search_no_kw">请输入关键词！</string>
+    <string name="lib_search_amount">检索结果总数：</string>
+    <!--声明-->
+    <string name="statement_common"><Data><![CDATA[<p><b>数据：</b><br>本APP（吾学）使用的所有数据均来自武汉大学各大官方页面；所有数据均保留在本地，不会收集和上传任何数据。</p><p><b>登录：</b><br>对于需要登录的页面，通过统一身份认证服务（https://cas.whu.edu.cn/authserver/index.do）完成登录验证。登录页面使用WebView，并通过缓存Cookie达到保持登录状态的目的，该过程未保存帐户的用户名和密码。</p>]]></Data></string>
+    <string name="statement_permission"><Data><![CDATA[<p><b>权限声明：</b><br><i>-android.permission.INTERNET</i><br>网络权限，用于页面数据请求<br><br><i>-android.permission.FOREGROUND_SERVICE</i><br>前台服务，消息订阅同步服务<br><br><i>-android.permission.SCHEDULE_EXACT_ALARM</i><br>定时器，定时启动消息推送的服务<br><br><i>-android.permission.RECEIVE_BOOT_COMPLETED</i><br>开机自启，开机后重新向系统注册定时器<br></p>]]></Data></string>
+    <string name="statement_source_code"><Data><![CDATA[<p><b>源码：</b><br>除网络数据解析外的源码已公开，详情请到关于页面查看。</p>]]></Data></string>
+    <!-- Preference Titles -->
+    <string name="messages_header">Messages</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
+</resources>

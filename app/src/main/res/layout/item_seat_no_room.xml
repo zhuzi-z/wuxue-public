@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="8dp"
+    android:gravity="center">
+
+    <ImageView
+        android:id="@+id/item_seat_background_imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/ic_seat_power_window" />
+
+    <TextView
+        android:id="@+id/item_seat_num_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/item_seat_background_imageView"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:paddingTop="2dp"
+        android:text="001"
+        android:textSize="12sp"
+        android:textStyle="bold" />
+
+</RelativeLayout>

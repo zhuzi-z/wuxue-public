@@ -1,0 +1,6 @@
+# Project exclude paths
+/.gradle/
+/app/build/
+/app/src/main/java/com/wuda/wuxue/network/
+/app/release/
+/app/build/intermediates/javac/debug/classes/

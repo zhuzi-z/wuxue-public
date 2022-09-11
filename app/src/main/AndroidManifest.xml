@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.wuda.wuxue">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+
+    <application
+        android:name=".WuXueApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_config"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Wuxue">
+        <activity
+            android:name=".ui.base.NavHostActivity"
+            android:exported="false" />
+
+        <service
+            android:name=".service.InfoSyncIntentService"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.mine.InfoActivity"
+            android:exported="false" />
+
+        <receiver
+            android:name=".receiver.InfoAlarmReceiver"
+            android:enabled="true"
+            android:exported="true" />
+        <receiver
+            android:name=".receiver.DeviceBootReceiver"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.RECEIVE_BOOT_COMPLETED">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name=".ui.course.ScheduleManagerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.mine.AboutActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.mine.AccountActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.toolkit.ToolActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.course.EditCourseActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.course.ScoreStatisticActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.course.UnderGraduateCourseImportActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.MainActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Wuxue">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

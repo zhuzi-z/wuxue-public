@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/score_sync"
+        android:icon="@drawable/ic_cloud_download"
+        android:title="同步"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/score_about"
+        android:icon="@drawable/ic_help"
+        android:title="帮助"
+        app:showAsAction="always" />
+</menu>

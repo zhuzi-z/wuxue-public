@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_toolkit">
+
+    <fragment
+        android:id="@+id/navigation_schedule"
+        android:name="com.wuda.wuxue.ui.course.ScheduleFragment"
+        android:label="@string/title_schedule_table"
+        tools:layout="@layout/fragment_schedule" />
+
+    <fragment
+        android:id="@+id/navigation_toolkit"
+        android:name="com.wuda.wuxue.ui.toolkit.ToolkitFragment"
+        android:label="@string/title_toolkit"
+        tools:layout="@layout/fragment_toolkit" />
+
+    <fragment
+        android:id="@+id/navigation_mine"
+        android:name="com.wuda.wuxue.ui.mine.MineFragment"
+        android:label="@string/title_setting"
+        tools:layout="@layout/fragment_mine" />
+</navigation>

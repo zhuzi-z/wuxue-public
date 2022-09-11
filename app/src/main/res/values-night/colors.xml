@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="lineChart_gpa">#B6BDE7</color>
+    <color name="lineChart_avgScore">#ABE3CB</color>
+
+    <color name="seat_free">#68b88e</color>
+    <color name="seat_using">#f1939c</color>
+    <color name="seat_ordered">#7a7374</color>
+    <color name="seat_left">#fbda41</color>
+    <color name="seat_disable">#81776e</color>
+
+    <color name="transparent">#50000000</color>
+
+    <color name="surface">#121212</color>
+</resources>

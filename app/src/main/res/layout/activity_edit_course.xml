@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.course.EditCourseActivity">
+
+    <include layout="@layout/back_toolbar" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:elevation="8dp"
+                tools:visibility="visible">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="8dp">
+
+                    <ImageView
+                        android:id="@+id/editCourse_imageView1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        app:layout_constraintEnd_toStartOf="@+id/editCourse_name_et"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/ic_baseline_bookmark_24" />
+
+                    <EditText
+                        android:id="@+id/editCourse_name_et"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:background="@null"
+                        android:ems="10"
+                        android:hint="课程名称"
+                        android:inputType="text"
+                        android:textSize="18sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/editCourse_imageView1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/editCourse_imageView1"
+                        app:layout_constraintTop_toTopOf="@+id/editCourse_imageView1" />
+
+                    <ImageView
+                        android:id="@+id/editCourse_imageView4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginBottom="8dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/editCourse_teacher_et"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/editCourse_imageView1"
+                        app:srcCompat="@drawable/ic_person" />
+
+                    <EditText
+                        android:id="@+id/editCourse_teacher_et"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:background="@null"
+                        android:ems="10"
+                        android:hint="授课老师"
+                        android:inputType="text"
+                        android:textSize="18sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/editCourse_imageView4"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/editCourse_imageView4"
+                        app:layout_constraintTop_toTopOf="@+id/editCourse_imageView4" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:elevation="8dp"
+                tools:visibility="visible">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp">
+
+                    <ImageView
+                        android:id="@+id/editCourse_imageView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/ic_calendar" />
+
+                    <EditText
+                        android:id="@+id/editCourse_time_et"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:background="@null"
+                        android:editable="false"
+                        android:ems="10"
+                        android:focusableInTouchMode="false"
+                        android:hint="上课时间"
+                        android:inputType="none"
+                        android:textSize="18sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/editCourse_imageView3"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/editCourse_imageView3"
+                        app:layout_constraintTop_toTopOf="@+id/editCourse_imageView3" />
+
+                    <EditText
+                        android:id="@+id/editCourse_week_et"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:background="@null"
+                        android:editable="false"
+                        android:ems="10"
+                        android:focusableInTouchMode="false"
+                        android:hint="上课周数"
+                        android:inputType="none"
+                        android:textSize="18sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/editCourse_imageView2"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/editCourse_imageView2"
+                        app:layout_constraintTop_toTopOf="@+id/editCourse_imageView2" />
+
+                    <ImageView
+                        android:id="@+id/editCourse_imageView3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        app:layout_constraintEnd_toStartOf="@+id/editCourse_time_et"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/editCourse_imageView2"
+                        app:srcCompat="@drawable/ic_time" />
+
+                    <ImageView
+                        android:id="@+id/editCourse_imageView5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginBottom="8dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/editCourse_imageView3"
+                        app:srcCompat="@drawable/ic_location" />
+
+                    <EditText
+                        android:id="@+id/editCourse_room_et"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:background="@null"
+                        android:ems="10"
+                        android:hint="上课地点"
+                        android:inputType="text"
+                        android:textSize="18sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/editCourse_imageView5"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/editCourse_imageView5"
+                        app:layout_constraintTop_toTopOf="@+id/editCourse_imageView5"
+                        app:layout_constraintVertical_bias="1.0" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:elevation="8dp"
+                tools:visibility="visible">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="8dp">
+
+                    <ImageView
+                        android:id="@+id/editCourse_imageView6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/ic_score" />
+
+                    <EditText
+                        android:id="@+id/editCourse_bgColor_et"
+                        android:layout_width="339dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:background="@null"
+                        android:editable="false"
+                        android:ems="10"
+                        android:focusableInTouchMode="false"
+                        android:hint="颜色"
+                        android:inputType="none"
+                        android:textSize="18sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/editCourse_imageView7"
+                        app:layout_constraintStart_toEndOf="@+id/editCourse_imageView7"
+                        app:layout_constraintTop_toTopOf="@+id/editCourse_imageView7"
+                        app:layout_constraintVertical_bias="0.0" />
+
+                    <ImageView
+                        android:id="@+id/editCourse_imageView7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginBottom="8dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/editCourse_bgColor_et"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/editCourse_imageView6"
+                        app:srcCompat="@drawable/ic_baseline_colorize_24" />
+
+                    <EditText
+                        android:id="@+id/editCourse_credit_et"
+                        android:layout_width="339dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:background="@null"
+                        android:ems="10"
+                        android:hint="学分"
+                        android:inputType="numberDecimal"
+                        android:textSize="18sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/editCourse_imageView6"
+                        app:layout_constraintStart_toEndOf="@+id/editCourse_imageView6"
+                        app:layout_constraintTop_toTopOf="@+id/editCourse_imageView6" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:padding="8dp"
+                tools:layout_editor_absoluteY="56dp"
+                tools:visibility="visible">
+
+                <Button
+                    android:id="@+id/editCourse_save_btn"
+                    style="@style/AppTheme.RadiusButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="保存"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Button
+                    android:id="@+id/editCourse_delete_btn"
+                    style="@style/AppTheme.RadiusButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:backgroundTint="#E91E63"
+                    android:text="删除"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/editCourse_save_btn" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>

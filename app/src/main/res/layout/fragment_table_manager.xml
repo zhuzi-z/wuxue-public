@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp"
+        tools:context=".ui.course.TableManagerFragment">
+
+        <TextView
+            android:id="@+id/tableManager_name_textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_schedule_table"
+            android:drawablePadding="8dp"
+            android:drawableTint="#5E97CA"
+            android:gravity="center_vertical"
+            android:paddingBottom="16dp"
+            android:text="课表1"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tableManager_date_textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_today"
+            android:drawablePadding="8dp"
+            android:drawableTint="#D08686"
+            android:gravity="center_vertical"
+            android:paddingBottom="16dp"
+            android:text="2022-01-01"
+            android:textSize="20sp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/tableManager_course_recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/tableManager_setAsCurrent_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="设为当期课表"
+            android:textSize="20sp"
+            app:cornerRadius="16dp" />
+
+        <Button
+            android:id="@+id/tableManager_delete_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#E91E63"
+            android:text="删除课表"
+            android:textSize="20sp"
+            app:cornerRadius="16dp" />
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>
+

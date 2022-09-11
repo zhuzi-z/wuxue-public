@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="lineChart_gpa">#B6BDE7</color>
+    <color name="lineChart_avgScore">#ABE3CB</color>
+
+    <color name="seat_free">#68b88e</color>
+    <color name="seat_using">#f1939c</color>
+    <color name="seat_ordered">#7a7374</color>
+    <color name="seat_left">#fbda41</color>
+    <color name="seat_disable">#81776e</color>
+
+
+
+    <color name="transparent">#50000000</color>
+
+    <color name="surface">@color/white</color>
+
+<!--    中国色 http://zhongguose.com/  -->
+    <color name="jinglan">#5698c3</color>
+    <!--  中国色 http://zhongguose.com/ -->
+    <color name="RunHong">#f7cdbc</color>
+    <color name="MuDanHong">#eea2a4</color>
+    <color name="ChaHuaHong">#ee3f4d</color>
+    <color name="FengYeHong">#c21f30</color>
+    <color name="MeiHong">#c45a65</color>
+    <color name="ZaoHong">#7c1823</color>
+
+    <color name="DanQingZi">#e0c8d1</color>
+    <color name="ZhiLanZi">#e9ccd3</color>
+    <color name="QingHaKeZi">#bc84a8</color>
+    <color name="YangCongZi">#a8456b</color>
+    <color name="ShiZhuZi">#63071c</color>
+    <color name="TengLuoZi">#8076a3</color>
+    <color name="YuanShanZi">#ccccd6</color>
+    <color name="DiaoZi">#5d3131</color>
+
+    <color name="LuSuiHui">#bdaead</color>
+    <color name="QianHui">#dad4cb</color>
+    <color name="YinSHuHui">#b5aa90</color>
+    <color name="YueHui">#b7ae8f</color>
+    <color name="XiaYunHui">#617172</color>
+    <color name="DaLiShiHui">#c4cbcf</color>
+    <color name="XinHui">#7a7374</color>
+    <color name="YuWeiHui">#5e616d</color>
+    <color name="JingYuHui">#475164</color>
+    <color name="GuDingHui">#36292f</color>
+    <color name="ChangShiHui">#363433</color>
+
+    <color name="YuanTianLan">#d0dfe6</color>
+    <color name="YunShuiLan">#baccd9</color>
+    <color name="QiuBoLan">#8abcd1</color>
+    <color name="XingLan">#93b5cf</color>
+    <color name="JingLan">#5698c3</color>
+
+    <color name="DanCuiLv">#c6dfc8</color>
+    <color name="YuZanLv">#a4cab6</color>
+    <color name="WaSongLv">#6e8b74</color>
+    <color name="LangHuaLv">#92b3a5</color>
+    <color name="WuZhiLv">#69a794</color>
+    <color name="MaiMiaoLv">#55bb8a</color>
+    <color name="ZhuLv">#1ba784</color>
+    <color name="TianLuoLv">#5e665b</color>
+
+    <color name="MaiYaTangHuang">#f9d27d</color>
+    <color name="DouZhiHuang">#f8e8c1</color>
+    <color name="XingRenHuang">#f7e8aa</color>
+    <color name="YouCaiHuaHuang">#fbda41</color>
+    <color name="QiuKuiHunag">#eed045</color>
+    <color name="MoLiHuang">#f8df72</color>
+
+    <color name="YueBai">#eef7f2</color>
+    <color name="XueBai">#fffef9</color>
+    <color name="YinBai">#f1f0ed</color>
+    <color name="YuDuBai">#f7f4ed</color>
+    <color name="HanBaiYu">#f8f4ed</color>
+    <color name="FenBai">#fbf2e3</color>
+    <color name="RuBai">#f9f4dc</color>
+    <color name="HeHuaBai">#fbecde</color>
+</resources>
