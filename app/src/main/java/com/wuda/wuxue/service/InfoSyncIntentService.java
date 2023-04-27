@@ -135,6 +135,8 @@ public class InfoSyncIntentService extends IntentService {
             InfoDBUtility.saveInfoId(allInfo);
         }
 
+        newInfo.add(allInfo.get(0));
+
         if (!newInfo.isEmpty()) {
             InfoDBUtility.saveInfoId(newInfo);
 

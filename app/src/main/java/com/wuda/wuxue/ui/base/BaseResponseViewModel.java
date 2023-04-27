@@ -65,6 +65,11 @@ public abstract class BaseResponseViewModel<T> extends ViewModel {
 
     public void clearFailResponse() {
         // 处理完异常后清空，View中会接收到null数据，需要自行过滤
-        getFailResponse().postValue(null);
+        failResponse = null;
+    }
+
+    public void clearSuccessResponse() {
+        // 对于分页数据会同步存储到 data 上，当页面回到栈顶时，该数据可能与 data 中的数据重复
+        successResponse = null;
     }
 }

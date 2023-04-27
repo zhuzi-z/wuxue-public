@@ -1,5 +1,6 @@
 package com.wuda.wuxue.ui.course;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -10,6 +11,8 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,6 +23,7 @@ import com.flask.colorpicker.builder.ColorPickerDialogBuilder;
 //import com.skydoves.colorpickerview.ColorEnvelope;
 //import com.skydoves.colorpickerview.ColorPickerDialog;
 //import com.skydoves.colorpickerview.listeners.ColorEnvelopeListener;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.wuda.wuxue.R;
 import com.wuda.wuxue.bean.Course;
 import com.wuda.wuxue.db.CourseDBUtility;
@@ -39,7 +43,6 @@ public class EditCourseActivity extends AppCompatActivity {
     EditText week_et;
     EditText time_et;
     EditText bgColor_et;
-    Button delete_btn;
     Button save_btn;
 
     Course course;
@@ -63,7 +66,6 @@ public class EditCourseActivity extends AppCompatActivity {
         week_et = findViewById(R.id.editCourse_week_et);
         time_et = findViewById(R.id.editCourse_time_et);
         bgColor_et = findViewById(R.id.editCourse_bgColor_et);
-        delete_btn = findViewById(R.id.editCourse_delete_btn);
         save_btn = findViewById(R.id.editCourse_save_btn);
 
 
@@ -76,7 +78,6 @@ public class EditCourseActivity extends AppCompatActivity {
         course = (Course) intent.getSerializableExtra("course");
         if (course.getId() == -1) { // 如果是添加，tableID为-1
             toolbar.setTitle("添加新课程");
-            delete_btn.setVisibility(View.GONE);
         } else {
             toolbar.setTitle("修改课程");
         }
@@ -102,6 +103,34 @@ public class EditCourseActivity extends AppCompatActivity {
         bgColor_et.setTextColor(Color.parseColor(course.getColor()));
 
         eventBinding();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        if (course.getId() != -1) // 编辑而非新建，新建默认ID：-1
+            getMenuInflater().inflate(R.menu.delete_schedule, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.schedule_delete) {
+            new MaterialAlertDialogBuilder(EditCourseActivity.this)
+                    .setTitle("删除课程")
+                    .setMessage("删除后不可恢复，确定要删除吗？")
+                    .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            CourseDBUtility.deleteCourse(course);
+                            setResult(RESULT_OK);
+                            finish();
+                        }
+                    })
+                    .setNegativeButton("取消", null)
+                    .create().show();
+
+        }
+        return true;
     }
 
     private void eventBinding() {
@@ -265,15 +294,6 @@ public class EditCourseActivity extends AppCompatActivity {
                         })
                         .build()
                         .show();
-            }
-        });
-
-        delete_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                CourseDBUtility.deleteCourse(course);
-                setResult(RESULT_OK);
-                finish();
             }
         });
 

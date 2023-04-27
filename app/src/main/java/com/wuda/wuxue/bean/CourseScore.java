@@ -10,15 +10,14 @@ public class CourseScore {
     float gradePoint;
     String type;
 
-    public CourseScore(String name, String semester, float credit, float score, String type) {
+    public CourseScore(String name, String semester, float credit, float score, float gradePoint, String type) {
         // 课程名，学期，学分，分数，类型
         this.name = name;
         this.semester = semester;
         this.credit = credit;
         this.score = score;
         this.type = type;
-        // 绩点：统计平均绩点时需要使用
-        this.gradePoint = CourseUtility.toGradePoint(score);
+        this.gradePoint = gradePoint;
     }
 
     public String getName() {

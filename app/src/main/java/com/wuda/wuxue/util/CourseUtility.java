@@ -3,10 +3,8 @@ package com.wuda.wuxue.util;
 import android.graphics.Color;
 import android.util.Pair;
 
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
@@ -52,7 +50,8 @@ public class CourseUtility {
     }
 
     // 成绩转绩点
-    public static float toGradePoint(float score) {
+    // 参考 可信电子凭证：https://kxdz.whu.edu.cn/
+    public static float toGradePointUndergraduate(float score) {
         if (score >= 90) return 4.0f;
         else if (score >= 85) return 3.7f;
         else if (score >= 82) return 3.3f;
@@ -65,8 +64,21 @@ public class CourseUtility {
         else return 0.0f;
     }
 
+    public static float toGradePointGraduate(float score) {
+        if (score >= 96) return 4.0f;
+        else if (score >= 90) return 3.7f;
+        else if (score >= 85) return 3.3f;
+        else if (score >= 80) return 3.0f;
+        else if (score >= 75) return 2.7f;
+        else if (score >= 70) return 2.3f;
+        else if (score >= 67) return 2.0f;
+        else if (score >= 63) return 1.5f;
+        else if (score >= 60) return 1.0f;
+        else return 0.0f;
+    }
+
     // 成绩转等级（研究生）
-    public static String toGrade(float score) {
+    public static String toGradeGraduate(float score) {
         if (score >= 96) return "A+";
         else if (score >= 90) return "A";
         else if (score >= 85) return "A-";

@@ -1,6 +1,7 @@
 package com.wuda.wuxue.ui.adapter;
 
 import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
@@ -9,12 +10,14 @@ import android.text.style.StyleSpan;
 import androidx.annotation.NonNull;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.module.BaseLoadMoreModule;
+import com.chad.library.adapter.base.module.LoadMoreModule;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.wuda.wuxue.R;
 import com.wuda.wuxue.bean.SeatLocalHistory;
 import com.wuda.wuxue.bean.SeatOnlineHistory;
 
-public class SeatHistoryAdapter extends BaseQuickAdapter<Object, BaseViewHolder> {
+public class SeatHistoryAdapter extends BaseQuickAdapter<Object, BaseViewHolder> implements LoadMoreModule {
     public SeatHistoryAdapter(int layoutResId) {
         super(layoutResId);
     }
@@ -37,7 +40,7 @@ public class SeatHistoryAdapter extends BaseQuickAdapter<Object, BaseViewHolder>
         builder.append(seatLocalHistory.getSeat().getRoom()).append(" ").append(seatLocalHistory.getSeat().getNo());
         baseViewHolder.setText(R.id.seat_history_info_textView, builder);
 
-        baseViewHolder.setTextColor(R.id.seat_history_action_textView, R.color.QiuBoLan);
+        baseViewHolder.setTextColor(R.id.seat_history_action_textView, Color.parseColor("#8abcd1")); // R.color.xx 无效？？
         baseViewHolder.setText(R.id.seat_history_action_textView, "重新预约");
     }
 
@@ -53,12 +56,18 @@ public class SeatHistoryAdapter extends BaseQuickAdapter<Object, BaseViewHolder>
         switch (seatOnlineHistory.getState()) {
             case SeatOnlineHistory.STATE_CANCELED:
                 baseViewHolder.setText(R.id.seat_history_action_textView, "已取消");
-                baseViewHolder.setTextColor(R.id.seat_history_action_textView, R.color.DaLiShiHui);
+                baseViewHolder.setTextColor(R.id.seat_history_action_textView, Color.parseColor("#c4cbcf"));
                 break;
             case SeatOnlineHistory.STATE_NORMAL:
                 baseViewHolder.setText(R.id.seat_history_action_textView, "取消预约");
-                baseViewHolder.setTextColor(R.id.seat_history_action_textView, R.color.QiuBoLan);
+                baseViewHolder.setTextColor(R.id.seat_history_action_textView, Color.parseColor("#8abcd1"));
                 break;
         }
+    }
+
+    @NonNull
+    @Override
+    public BaseLoadMoreModule addLoadMoreModule(@NonNull BaseQuickAdapter<?, ?> baseQuickAdapter) {
+        return new BaseLoadMoreModule(this);
     }
 }

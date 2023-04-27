@@ -2,7 +2,9 @@ package com.wuda.wuxue.ui.toolkit;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +22,9 @@ import com.wuda.wuxue.R;
 import com.wuda.wuxue.bean.Movie;
 import com.wuda.wuxue.network.ResponseResult;
 import com.wuda.wuxue.ui.base.DialogFactory;
+import com.wuda.wuxue.ui.base.GlideImageGetter;
+
+import org.xml.sax.XMLReader;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -94,7 +99,21 @@ public class MovieInfoFragment extends ToolFragment {
         mViewModel.getSuccessResponse().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(String s) {
-                storyline_tv.append(Html.fromHtml(s));
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    storyline_tv.setText(Html.fromHtml(s, Html.FROM_HTML_MODE_LEGACY, new GlideImageGetter(storyline_tv, true, null), new Html.TagHandler() {
+                        @Override
+                        public void handleTag(boolean b, String s, Editable editable, XMLReader xmlReader) {
+
+                        }
+                    }));
+                } else {
+                    storyline_tv.setText(Html.fromHtml(s, new GlideImageGetter(storyline_tv, true, null), new Html.TagHandler() {
+                        @Override
+                        public void handleTag(boolean b, String s, Editable editable, XMLReader xmlReader) {
+
+                        }
+                    }));
+                }
             }
         });
 

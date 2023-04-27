@@ -135,4 +135,10 @@ public class BaseAnnouncementFragment extends ToolFragment {
             adapter.setList(mViewModel.getData());
         }
     }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        mViewModel.clearSuccessResponse();
+    }
 }

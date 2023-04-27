@@ -1,6 +1,7 @@
 package com.wuda.wuxue.ui.course;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -11,12 +12,17 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.view.MenuProvider;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -26,6 +32,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.wuda.wuxue.R;
 import com.wuda.wuxue.bean.Course;
 import com.wuda.wuxue.bean.Timetable;
@@ -48,7 +55,6 @@ public class TableManagerFragment extends Fragment {
     TextView date_tv;
     RecyclerView course_rv;
     Button setAsCurrent_btn;
-    Button delete_btn;
 
     CourseAdapter mAdapter;
     ScheduleManagerViewModel mViewModel;
@@ -85,7 +91,6 @@ public class TableManagerFragment extends Fragment {
         date_tv = view.findViewById(R.id.tableManager_date_textView);
         course_rv = view.findViewById(R.id.tableManager_course_recyclerView);
         setAsCurrent_btn = view.findViewById(R.id.tableManager_setAsCurrent_button);
-        delete_btn = view.findViewById(R.id.tableManager_delete_button);
 
         name_tv.setText(table.getName());
         date_tv.setText(table.getStartDate());
@@ -110,6 +115,36 @@ public class TableManagerFragment extends Fragment {
         mAdapter = new CourseAdapter(R.layout.item_textview);
         course_rv.setAdapter(mAdapter);
         mAdapter.setList(CourseDBUtility.queryCourseSchedule(table.getId()));
+
+        requireActivity().addMenuProvider(new MenuProvider() {
+            @Override
+            public void onCreateMenu(@NonNull Menu menu, @NonNull MenuInflater menuInflater) {
+                menuInflater.inflate(R.menu.delete_schedule, menu);
+            }
+
+            @Override
+            public boolean onMenuItemSelected(@NonNull MenuItem menuItem) {
+                if (menuItem.getItemId() == R.id.schedule_delete) {
+                    new MaterialAlertDialogBuilder(requireContext())
+                            .setTitle("删除课表")
+                            .setMessage("删除后不可恢复，确定要删除吗？")
+                            .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    mViewModel.deleteTimetable(table);
+                                    mViewModel.queryTimetable();
+                                    if (SharePreferenceManager.loadInteger(SharePreferenceManager.SCHEDULE_CURRENT_TABLE_ID) == 0) {
+                                        SharePreferenceManager.storeInteger(SharePreferenceManager.SCHEDULE_CURRENT_TABLE_ID, 0);
+                                    }
+                                    requireActivity().onBackPressed();
+                                }
+                            })
+                            .setNegativeButton("取消", null)
+                            .create().show();
+                }
+                return true;
+            }
+        }, getViewLifecycleOwner(), Lifecycle.State.RESUMED);
 
         eventBinding();
     }
@@ -175,18 +210,6 @@ public class TableManagerFragment extends Fragment {
             public void onClick(View v) {
                 SharePreferenceManager.storeInteger(SharePreferenceManager.SCHEDULE_CURRENT_TABLE_ID, table.getId());
                 setAsCurrent_btn.setBackgroundColor(Color.LTGRAY);
-            }
-        });
-
-        delete_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mViewModel.deleteTimetable(table);
-                mViewModel.queryTimetable();
-                if (SharePreferenceManager.loadInteger(SharePreferenceManager.SCHEDULE_CURRENT_TABLE_ID) == 0) {
-                    SharePreferenceManager.storeInteger(SharePreferenceManager.SCHEDULE_CURRENT_TABLE_ID, 0);
-                }
-                requireActivity().onBackPressed();
             }
         });
     }

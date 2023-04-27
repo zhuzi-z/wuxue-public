@@ -20,7 +20,7 @@
     <TextView
         android:id="@+id/seat_history_action_textView"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:gravity="right|center_vertical"
         android:text="取消"
         android:textColor="@color/QiuBoLan"

@@ -1,5 +1,7 @@
 package com.wuda.wuxue.ui.toolkit;
 
+import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -15,6 +17,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.wuda.wuxue.R;
 import com.wuda.wuxue.bean.OptionPair;
 import com.wuda.wuxue.bean.Seat;
@@ -32,7 +35,6 @@ public class OrderSeatFragment extends ToolFragment {
     TextView seat_tv;
     ChipGroup startTimeGroup;
     ChipGroup endTimeGroup;
-    TextView result_tv;
     Button order_btn;
 
     OrderSeatViewModel mViewModel;
@@ -48,6 +50,7 @@ public class OrderSeatFragment extends ToolFragment {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -56,7 +59,6 @@ public class OrderSeatFragment extends ToolFragment {
         seat_tv = view.findViewById(R.id.orderSeat_seat_textView);
         startTimeGroup = view.findViewById(R.id.orderSeat_startTime_chipGroup);
         endTimeGroup = view.findViewById(R.id.orderSeat_endTime_chipGroup);
-        result_tv = view.findViewById(R.id.orderSeat_result_textView);
         order_btn = view.findViewById(R.id.orderSeat_order_button);
 
         seat_tv.setText(seat.getRoom() + " " + seat.getNo());
@@ -68,6 +70,7 @@ public class OrderSeatFragment extends ToolFragment {
 
         if (mViewModel.getStartTimeList().getValue() == null) {
             mViewModel.requestStartTimeList(seat.getId(), mSharedViewModel.date);
+            showProgressBar();
         }
 
         return view;
@@ -79,6 +82,7 @@ public class OrderSeatFragment extends ToolFragment {
         mViewModel.getStartTimeList().observe(getViewLifecycleOwner(), new Observer<List<OptionPair>>() {
             @Override
             public void onChanged(List<OptionPair> times) {
+                closeProgressBar();
                 startTimeGroup.removeAllViews();
                 mViewModel.selectedStartTime = null;
                 for (OptionPair time: times) {
@@ -93,6 +97,7 @@ public class OrderSeatFragment extends ToolFragment {
                                 mViewModel.selectedStartTime = time;
                                 mViewModel.selectedEndTime = null;
                                 endTimeGroup.removeAllViews();
+                                showProgressBar();
                                 mViewModel.requestEndTimeList(seat.getId(), mSharedViewModel.date);
                             }
                         }
@@ -105,6 +110,7 @@ public class OrderSeatFragment extends ToolFragment {
         mViewModel.getEndTimeList().observe(getViewLifecycleOwner(), new Observer<List<OptionPair>>() {
             @Override
             public void onChanged(List<OptionPair> timeList) {
+                closeProgressBar();
                 for (OptionPair time: timeList) {
                     Chip endTime_chip = new Chip(requireContext());
                     endTime_chip.setText(time.getName());
@@ -127,7 +133,15 @@ public class OrderSeatFragment extends ToolFragment {
         mViewModel.getSuccessResponse().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(String s) {
-                result_tv.setText(Html.fromHtml(s));
+                closeProgressBar();
+                new MaterialAlertDialogBuilder(requireContext())
+                        .setMessage(Html.fromHtml(s))
+                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                requireActivity().onBackPressed();
+                            }
+                        }).create().show();
                 // 本地历史
                 String time = mSharedViewModel.date + " " + mViewModel.selectedStartTime.getName() + " -- " + mViewModel.selectedEndTime.getName();
                 LibSeatDBUtility.saveLocalHistory(new SeatLocalHistory(time, seat));
@@ -137,6 +151,7 @@ public class OrderSeatFragment extends ToolFragment {
         mViewModel.getFailResponse().observe(getViewLifecycleOwner(), new Observer<ResponseResult<?>>() {
             @Override
             public void onChanged(ResponseResult<?> result) {
+                closeProgressBar();
                 if (result == null) return;
                 DialogFactory.errorInfoDialog(requireContext(), result).show();
                 mViewModel.clearFailResponse();
@@ -146,7 +161,9 @@ public class OrderSeatFragment extends ToolFragment {
         order_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                showProgressBar();
                 mViewModel.orderSeat(seat.getId(), mSharedViewModel.date, mSharedViewModel.tokens);
+                order_btn.setEnabled(false);
             }
         });
     }

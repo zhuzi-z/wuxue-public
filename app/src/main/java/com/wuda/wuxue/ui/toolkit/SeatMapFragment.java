@@ -76,10 +76,12 @@ public class SeatMapFragment extends ToolFragment {
         query_btn = view.findViewById(R.id.seat_option_query_button);
 
         building_cg = new OptionFoldChipGroup(requireContext());
+        building_cg.setPadding(0, 16, 0, 0);
         building_cg.setLabel("场馆");
         optionContainer_ll.addView(building_cg);
 
         room_cg = new OptionFoldChipGroup(requireContext());
+        room_cg.setPadding(0, 16, 0, 0);
         room_cg.setLabel("房间");
         optionContainer_ll.addView(room_cg);
 

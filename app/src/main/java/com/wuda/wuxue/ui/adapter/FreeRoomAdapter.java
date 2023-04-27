@@ -4,8 +4,8 @@ import androidx.annotation.NonNull;
 
 import com.chad.library.adapter.base.BaseNodeAdapter;
 import com.chad.library.adapter.base.entity.node.BaseNode;
-import com.wuda.wuxue.bean.adapterHelper.RootNode;
-import com.wuda.wuxue.bean.adapterHelper.TextItemNode;
+import com.wuda.wuxue.bean.helper.RootNode;
+import com.wuda.wuxue.bean.helper.TextItemNode;
 import com.wuda.wuxue.ui.adapter.provider.RootNodeProvider;
 import com.wuda.wuxue.ui.adapter.provider.TextItemNodeProvider;
 

@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.module.BaseLoadMoreModule;
 import com.chad.library.adapter.base.module.LoadMoreModule;
@@ -17,7 +18,7 @@ import com.wuda.wuxue.bean.Seat;
 public class SeatAdapter extends BaseQuickAdapter<Seat, BaseViewHolder> implements LoadMoreModule {
 
     int[] bgColors;
-    Drawable[] bgIcons;
+    int[] bgIcons;
 
     public SeatAdapter(int layoutResId) {
         super(layoutResId);
@@ -33,11 +34,11 @@ public class SeatAdapter extends BaseQuickAdapter<Seat, BaseViewHolder> implemen
                 getContext().getColor(R.color.seat_ordered),
                 getContext().getColor(R.color.seat_left)
         };
-        bgIcons = new Drawable[] {
-                getContext().getDrawable(R.drawable.ic_seat_nothing),
-                getContext().getDrawable(R.drawable.ic_seat_power),
-                getContext().getDrawable(R.drawable.ic_seat_window),
-                getContext().getDrawable(R.drawable.ic_seat_power_window)
+        bgIcons = new int[] {
+                R.drawable.ic_seat_nothing,
+                R.drawable.ic_seat_power,
+                R.drawable.ic_seat_window,
+                R.drawable.ic_seat_power_window
         };
     }
 
@@ -46,9 +47,11 @@ public class SeatAdapter extends BaseQuickAdapter<Seat, BaseViewHolder> implemen
 
         ImageView bg_iv = baseViewHolder.getView(R.id.item_seat_background_imageView);
         // getConstantState().newDrawable() => clone
-        bg_iv.setImageDrawable(bgIcons[seat.getType() & 0x0f].getConstantState().newDrawable());
+//        bg_iv.setImageDrawable(bgIcons[seat.getType() & 0x0f].getConstantState().newDrawable());
+        Glide.with(baseViewHolder.itemView)
+                .load(bgIcons[seat.getType() & 0x0f])
+                .into(bg_iv);
         bg_iv.setColorFilter(bgColors[seat.getType() >> 4]);
-
         baseViewHolder.setText(R.id.item_seat_num_textView, seat.getNo());
         baseViewHolder.setText(R.id.item_seat_room_textView, seat.getRoom());
     }

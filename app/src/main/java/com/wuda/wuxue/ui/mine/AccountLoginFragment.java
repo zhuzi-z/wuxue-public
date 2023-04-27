@@ -11,7 +11,7 @@ import android.webkit.WebViewClient;
 import android.widget.Toast;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
-import com.wuda.wuxue.WuXueApplication;
+import com.wuda.wuxue.network.HttpClient;
 import com.wuda.wuxue.network.ServerURL;
 import com.wuda.wuxue.ui.base.WebViewFragment;
 
@@ -44,7 +44,7 @@ public class AccountLoginFragment extends WebViewFragment {
                 // 重定向，提前拦截退出
                 if (url.equals(ServerURL.CAS_ACCOUNT)) {
                     String cookies = CookieManager.getInstance().getCookie(url);
-                    WuXueApplication.setCookies(cookies);
+                    HttpClient.setCasCookies(cookies);
                     // 隐藏 webView（会进入详细信息页）
                     webView.setVisibility(View.GONE);
 

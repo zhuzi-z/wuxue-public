@@ -107,6 +107,12 @@ public class BookSearchFragment extends ToolFragment {
         }
     }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+        mViewModel.clearSuccessResponse();
+    }
+
     private void eventBinding() {
 
         mViewModel.getSuccessResponse().observe(getViewLifecycleOwner(), new Observer<List<BookItem>>() {

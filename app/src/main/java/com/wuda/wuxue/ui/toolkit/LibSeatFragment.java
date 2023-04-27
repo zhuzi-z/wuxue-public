@@ -21,6 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
+import com.chad.library.adapter.base.listener.OnLoadMoreListener;
 import com.wuda.wuxue.R;
 import com.wuda.wuxue.bean.OptionPair;
 import com.wuda.wuxue.bean.SeatLocalHistory;
@@ -35,6 +36,7 @@ import com.wuda.wuxue.ui.base.FullScreenDialog;
 import com.wuda.wuxue.ui.base.WaitForLoginFragment;
 import com.wuda.wuxue.ui.mine.AccountActivity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LibSeatFragment extends ToolFragment {
@@ -87,13 +89,24 @@ public class LibSeatFragment extends ToolFragment {
                         public void onClick(View v) {
                             if (((SeatOnlineHistory) history).getState() == SeatOnlineHistory.STATE_NORMAL) {
                                 mViewModel.cancelOrder(((SeatOnlineHistory) history).getVisaId());
+                                showProgressBar();
                             }
                         }
                     });
                 }
             }
         });
+        historyAdapter.getLoadMoreModule().setAutoLoadMore(false);
+        historyAdapter.getLoadMoreModule().setOnLoadMoreListener(new OnLoadMoreListener() {
+            @Override
+            public void onLoadMore() {
+                if (historyType_switch.isChecked()) {
+                    mViewModel.requestOnlineHistory();
+                } else {
 
+                }
+            }
+        });
         history_rv.setLayoutManager(new LinearLayoutManager(getContext()));
         history_rv.setAdapter(historyAdapter);
 
@@ -136,8 +149,9 @@ public class LibSeatFragment extends ToolFragment {
             public void onChanged(List<OptionPair> optionPairs) {
                 if (fullScreenDialog != null)
                     fullScreenDialog.dismiss();
-                if (mViewModel.getLocalHistory().getValue() == null)
-                    mViewModel.queryLocalHistory();
+                // 从其他页面退出时刷新预约记录
+                historyType_switch.setChecked(false);
+                mViewModel.queryLocalHistory();
                 mSharedViewModel.tokens = optionPairs;
             }
         });
@@ -150,9 +164,9 @@ public class LibSeatFragment extends ToolFragment {
                     waitForLoginFragment.setState(WaitForLoginFragment.STATE_FAIL);
                     Intent intent = new Intent(requireContext(), AccountActivity.class);
                     startActivity(intent);
-                    return;
+                } else {
+                    DialogFactory.errorInfoDialog(requireContext(), result).show();
                 }
-                DialogFactory.errorInfoDialog(requireContext(), result).show();
                 mViewModel.clearFailResponse();
             }
         });
@@ -160,13 +174,25 @@ public class LibSeatFragment extends ToolFragment {
         mViewModel.getOnlineHistory().observe(getViewLifecycleOwner(), new Observer<List<SeatOnlineHistory>>() {
             @Override
             public void onChanged(List<SeatOnlineHistory> seatOnlineHistories) {
-                historyAdapter.setList(seatOnlineHistories);
+                // 从栈中退出时，本地记录，历史记录可能都存在
+                if (!historyType_switch.isChecked())
+                    return;
+                historyAdapter.addData(seatOnlineHistories);
+                if (mViewModel.hasMoreOnlineHistory()) {
+                    historyAdapter.getLoadMoreModule().loadMoreComplete();
+                } else {
+                    historyAdapter.getLoadMoreModule().loadMoreEnd();
+                }
+                closeProgressBar();
             }
         });
 
         mViewModel.getCancelResponse().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(String s) {
+                // 状态重置
+                mViewModel.onlineHistoryOffset = 0;
+                historyAdapter.getData().clear();
                 mViewModel.requestOnlineHistory();
             }
         });
@@ -174,7 +200,11 @@ public class LibSeatFragment extends ToolFragment {
         mViewModel.getLocalHistory().observe(getViewLifecycleOwner(), new Observer<List<SeatLocalHistory>>() {
             @Override
             public void onChanged(List<SeatLocalHistory> seatLocalHistories) {
+                if (historyType_switch.isChecked())
+                    return;
+                // addData(): 从栈退出时，上一次历史以及本次自动加载部分会重复
                 historyAdapter.setList(seatLocalHistories);
+                historyAdapter.getLoadMoreModule().loadMoreEnd();
             }
         });
 
@@ -183,7 +213,7 @@ public class LibSeatFragment extends ToolFragment {
             public void onClick(View v) {
                 if (mSharedViewModel.today) {
                     date_tv.setText("明天");
-                    Toast.makeText(requireContext(), "请勿在22:45前预约次日的座位，否则会遭到系统限制，一段时间内无法操作。", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(requireContext(), "请勿在22:45前预约次日的座位，否则会遭到系统限制，一段时间内无法操作。", Toast.LENGTH_LONG).show();
                 } else {
                     date_tv.setText("今天");
                 }
@@ -216,10 +246,13 @@ public class LibSeatFragment extends ToolFragment {
         historyType_switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                historyAdapter.setList(new ArrayList<>());
                 if (isChecked) {
                     mViewModel.requestOnlineHistory();
                 } else {
                     mViewModel.queryLocalHistory();
+                    // 重置在线记录的位置
+                    mViewModel.onlineHistoryOffset = 0;
                 }
             }
         });

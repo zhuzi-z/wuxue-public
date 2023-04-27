@@ -36,6 +36,7 @@ public class CourseDatabaseHelper extends SQLiteOpenHelper {
             "semester text," +
             "credit real," +
             "score real," +
+            "gradePoint real," +
             "type text)";
 
     public static CourseDatabaseHelper getInstance(Context context) {

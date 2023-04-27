@@ -4,13 +4,18 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.view.MenuProvider;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -46,7 +51,7 @@ public class TableListFragment extends Fragment {
         footer_tv = new TextView(requireContext());
         footer_tv.setGravity(Gravity.CENTER);
         footer_tv.setPadding(8, 8, 8, 8);
-        footer_tv.setText("\n添加空课表\n\n课表的实现参考了'WakeUp课程表'，如需要更多的功能请下载'WakeUp课程表'");
+        footer_tv.setText("课表的实现参考了'WakeUp课程表'，如需要更多的功能请下载'WakeUp课程表'");
 
         mAdapter.setFooterView(footer_tv);
         recyclerView.setAdapter(mAdapter);
@@ -66,13 +71,21 @@ public class TableListFragment extends Fragment {
         if (mViewModel.getTimetable().getValue() == null)
             mViewModel.queryTimetable();
 
-        footer_tv.setOnClickListener(new View.OnClickListener() {
+        requireActivity().addMenuProvider(new MenuProvider() {
             @Override
-            public void onClick(View view) {
-                mViewModel.createTimeTable();
-                mViewModel.queryTimetable();
+            public void onCreateMenu(@NonNull Menu menu, @NonNull MenuInflater menuInflater) {
+                menuInflater.inflate(R.menu.add_shechdule, menu);
             }
-        });
+
+            @Override
+            public boolean onMenuItemSelected(@NonNull MenuItem menuItem) {
+                if (menuItem.getItemId() == R.id.schedule_add) {
+                    mViewModel.createTimeTable();
+                    mViewModel.queryTimetable();
+                }
+                return true;
+            }
+        }, getViewLifecycleOwner(), Lifecycle.State.RESUMED);
     }
 
     private void eventBinding() {

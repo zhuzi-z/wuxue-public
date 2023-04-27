@@ -71,14 +71,6 @@
 
             </com.google.android.material.chip.ChipGroup>
 
-            <TextView
-                android:id="@+id/orderSeat_result_textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:text="预约结果"
-                android:textSize="16sp" />
-
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 

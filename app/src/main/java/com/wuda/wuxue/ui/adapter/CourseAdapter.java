@@ -27,7 +27,7 @@ public class CourseAdapter extends BaseQuickAdapter<Course, BaseViewHolder> {
         SpannableStringBuilder builder = new SpannableStringBuilder();
         builder.append(course.getName(), new StyleSpan(Typeface.BOLD), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
         builder.append("\n");
-        builder.append(course.getTeacher() + " | " + course.getStartWeek() + "-" + course.getEndWeek(), new RelativeSizeSpan(0.75f), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+        builder.append(course.getTeacher() + " | " + course.getStartWeek() + "-" + course.getEndWeek() + "周", new RelativeSizeSpan(0.75f), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
         return builder;
     }
 }

@@ -191,11 +191,11 @@ public class CourseDBUtility {
             db.execSQL("delete from Score");
 
             for (CourseScore courseScore : scoreList) {
-                db.execSQL("insert into Score (name, semester, credit, score, type) values (?, ?, ?, ?, ?)",
+                db.execSQL("insert into Score (name, semester, credit, score, gradePoint, type) values (?, ?, ?, ?, ?, ?)",
                         new Object[]{
                                 courseScore.getName(), courseScore.getSemester(),
                                 courseScore.getCredit(), courseScore.getScore(),
-                                courseScore.getType()
+                                courseScore.getGradePoint(), courseScore.getType()
                         }
                 );
             }
@@ -215,6 +215,7 @@ public class CourseDBUtility {
         int semesterIdx = cursor.getColumnIndex("semester");
         int creditIdx = cursor.getColumnIndex("credit");
         int scoreIdx = cursor.getColumnIndex("score");
+        int gradePointIdx = cursor.getColumnIndex("gradePoint");
         int typeIdx = cursor.getColumnIndex("type");
         if (cursor.moveToFirst()) {
             do {
@@ -222,8 +223,9 @@ public class CourseDBUtility {
                 String semester = cursor.getString(semesterIdx);
                 float credit = cursor.getFloat(creditIdx);
                 float score = cursor.getFloat(scoreIdx);
+                float gradePoint = cursor.getFloat(gradePointIdx);
                 String type = cursor.getString(typeIdx);
-                scoreList.add(new CourseScore(name, semester, credit, score, type));
+                scoreList.add(new CourseScore(name, semester, credit, score, gradePoint, type));
             } while (cursor.moveToNext());
         }
         db.close();

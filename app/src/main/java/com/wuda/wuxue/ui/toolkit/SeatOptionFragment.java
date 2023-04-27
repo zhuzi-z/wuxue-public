@@ -87,6 +87,7 @@ public class SeatOptionFragment extends ToolFragment {
 
         for (int i=0; i<optionGroupLabel.length; ++i) {
             allOptionGroup[i] = new OptionFoldChipGroup(getContext());
+            allOptionGroup[i].setPadding(0, 16, 0, 0);
             allOptionGroup[i].setLabel(optionGroupLabel[i]);
             allOptionGroup[i].setTag(i); // 每次回调通过 i 获取具体的选择项组
             optionContainer_ll.addView(allOptionGroup[i]);
@@ -113,6 +114,12 @@ public class SeatOptionFragment extends ToolFragment {
         if (!mViewModel.getData().isEmpty()) {
             mAdapter.setList(mViewModel.getData());
         }
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        mViewModel.clearSuccessResponse();
     }
 
     private void eventBinding() {
@@ -228,6 +235,7 @@ public class SeatOptionFragment extends ToolFragment {
                 // 条件改变，清空数据
                 mAdapter.setList(new ArrayList<>());
                 mViewModel.getData().clear();
+                mViewModel.setTotalPage(0);
                 mViewModel.requestSeats(getParam(), mSharedViewModel.date);
                 optionBottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
             }

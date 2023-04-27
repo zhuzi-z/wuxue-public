@@ -11,6 +11,7 @@ import com.wuda.wuxue.network.ResponseHandler;
 import com.wuda.wuxue.network.ResponseResult;
 import com.wuda.wuxue.ui.base.BaseResponseViewModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LibSeatViewModel extends BaseResponseViewModel<List<OptionPair>> {
@@ -18,6 +19,8 @@ public class LibSeatViewModel extends BaseResponseViewModel<List<OptionPair>> {
     private MutableLiveData<List<SeatOnlineHistory>> onlineHistory;
     private MutableLiveData<List<SeatLocalHistory>> localHistory;
     private MutableLiveData<String> cancelResponse;
+
+    int onlineHistoryOffset = 0;
 
     public MutableLiveData<List<SeatOnlineHistory>> getOnlineHistory() {
         if (onlineHistory == null)
@@ -51,11 +54,12 @@ public class LibSeatViewModel extends BaseResponseViewModel<List<OptionPair>> {
     }
 
     public void requestOnlineHistory() {
-        LibSeatNetwork.requestOnlineHistory(new ResponseHandler<List<SeatOnlineHistory>>() {
+        LibSeatNetwork.requestOnlineHistory(onlineHistoryOffset, new ResponseHandler<List<SeatOnlineHistory>>() {
             @Override
             public void onHandle(ResponseResult<List<SeatOnlineHistory>> result) {
                 if (result.isSuccess()) {
                     getOnlineHistory().postValue(result.getData());
+                    onlineHistoryOffset = result.getTotalPages();
                 } else
                     getFailResponse().postValue(result);
             }
@@ -82,5 +86,9 @@ public class LibSeatViewModel extends BaseResponseViewModel<List<OptionPair>> {
                     getFailResponse().postValue(result);
             }
         });
+    }
+
+    public boolean hasMoreOnlineHistory() {
+        return onlineHistoryOffset != -1;
     }
 }

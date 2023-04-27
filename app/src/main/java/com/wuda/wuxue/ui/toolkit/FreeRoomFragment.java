@@ -23,8 +23,8 @@ import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 import com.wuda.wuxue.R;
 import com.wuda.wuxue.bean.CampusBuilding;
-import com.wuda.wuxue.bean.adapterHelper.RootNode;
-import com.wuda.wuxue.bean.adapterHelper.TextItemNode;
+import com.wuda.wuxue.bean.helper.RootNode;
+import com.wuda.wuxue.bean.helper.TextItemNode;
 import com.wuda.wuxue.network.ResponseResult;
 import com.wuda.wuxue.ui.adapter.FreeRoomAdapter;
 import com.wuda.wuxue.ui.base.DialogFactory;
@@ -231,7 +231,7 @@ public class FreeRoomFragment extends ToolFragment {
         lessons.add(new RootNode(wrapString2Node(lesson6_8), "6-8节"));
 
         List<String> lesson11_13 = intersection(rooms.get(10), intersection(rooms.get(11), rooms.get(12)));
-        lessons.add(new RootNode(wrapString2Node(lesson11_13), "11-12节"));
+        lessons.add(new RootNode(wrapString2Node(lesson11_13), "11-13节"));
 
         // 单节
         for (int i=0; i< rooms.size(); i++) {

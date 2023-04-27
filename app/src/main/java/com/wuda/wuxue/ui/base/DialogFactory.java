@@ -88,15 +88,4 @@ public class DialogFactory {
                 .setPositiveButton("确定", null)
                 .create();
     }
-
-    public static AlertDialog simpleDialog(Context mContext, CharSequence[] items, ResultCallback<CharSequence> callback) {
-        return new MaterialAlertDialogBuilder(mContext)
-                .setItems(items, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        callback.result(items[which], which);
-                    }
-                })
-                .create();
-    }
 }

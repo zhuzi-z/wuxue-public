@@ -18,6 +18,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.Toast;
@@ -265,7 +266,7 @@ public class ScoreStatisticFragment extends Fragment {
         // 添加表头
         addHeader2Table();
         // 统计成绩
-        CourseScore totalScore = new CourseScore("", "", 0.0f, 0.0f, "");
+        CourseScore totalScore = new CourseScore("", "", 0.0f, 0.0f, 0, "");
         int totalCourse = 0;
         float totalCredit = 0.0f;
         float totalGrade = 0.0f;

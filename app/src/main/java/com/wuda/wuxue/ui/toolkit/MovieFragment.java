@@ -77,6 +77,12 @@ public class MovieFragment extends ToolFragment {
         }
     }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+        mViewModel.clearSuccessResponse();
+    }
+
     private void event() {
         mViewModel.getSuccessResponse().observe(getViewLifecycleOwner(), new Observer<List<Movie>>() {
             @Override

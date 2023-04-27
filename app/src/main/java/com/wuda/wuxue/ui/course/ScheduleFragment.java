@@ -154,6 +154,13 @@ public class ScheduleFragment extends Fragment {
             }
         });
 
+        currentWeek_tv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                viewPager2.setCurrentItem(mViewModel.getCurrentWeek() - 1, true);
+            }
+        });
+
         addCourse_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -10,6 +10,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.wuda.wuxue.WuXueApplication;
+import com.wuda.wuxue.network.HttpClient;
 import com.wuda.wuxue.network.ServerURL;
 import com.wuda.wuxue.ui.base.WebViewFragment;
 
@@ -41,7 +42,7 @@ public class AccountInfoFragment extends WebViewFragment {
                 // 过期时进入帐号管理，重新保存Cookies
                 if (isExpired && url.equals(ServerURL.CAS_ACCOUNT)) {
                     String cookies = CookieManager.getInstance().getCookie(url);
-                    WuXueApplication.setCookies(cookies);
+                    HttpClient.setCasCookies(cookies);
                 }
             }
         });

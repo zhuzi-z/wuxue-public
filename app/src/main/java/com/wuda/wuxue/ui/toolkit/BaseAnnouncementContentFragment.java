@@ -1,5 +1,6 @@
 package com.wuda.wuxue.ui.toolkit;
 
+import android.annotation.SuppressLint;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
@@ -104,8 +105,9 @@ public class BaseAnnouncementContentFragment extends ToolFragment {
             }
         });
 
-        if (mViewModel.getSuccessResponse().getValue() == null)
+        if (mViewModel.getSuccessResponse().getValue() == null) {
             mViewModel.requestContent(announcement);
-            showProgressBar();
+        }
+        showProgressBar();
     }
 }

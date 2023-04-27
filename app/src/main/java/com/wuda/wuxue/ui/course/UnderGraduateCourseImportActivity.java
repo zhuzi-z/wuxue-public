@@ -2,6 +2,7 @@ package com.wuda.wuxue.ui.course;
 
 import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
+import android.graphics.fonts.Font;
 import android.os.Bundle;
 import android.view.View;
 import android.webkit.CookieManager;
@@ -22,6 +23,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.progressindicator.LinearProgressIndicator;
 import com.wuda.wuxue.R;
 import com.wuda.wuxue.bean.Course;
 import com.wuda.wuxue.bean.CourseScore;
@@ -39,6 +41,7 @@ import java.util.Objects;
 public class UnderGraduateCourseImportActivity extends AppCompatActivity {
 
     WebView webView;
+    LinearProgressIndicator indicator;
     FloatingActionButton fab;
 
     UnderGraduateCourseImportViewModel mViewModel;
@@ -68,7 +71,10 @@ public class UnderGraduateCourseImportActivity extends AppCompatActivity {
         });
 
         webView = findViewById(R.id.webView);
+        indicator = findViewById(R.id.linearProgressIndicator);
         fab = findViewById(R.id.floatingActionButton);
+
+        indicator.setIndeterminate(true);
 
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
@@ -82,6 +88,13 @@ public class UnderGraduateCourseImportActivity extends AppCompatActivity {
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
                 super.onPageStarted(view, url, favicon);
                 fab.setVisibility(View.GONE);
+                indicator.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+                indicator.setVisibility(View.GONE);
             }
 
             @Nullable

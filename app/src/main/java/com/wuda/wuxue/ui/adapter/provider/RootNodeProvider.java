@@ -8,7 +8,7 @@ import com.chad.library.adapter.base.entity.node.BaseNode;
 import com.chad.library.adapter.base.provider.BaseNodeProvider;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.wuda.wuxue.R;
-import com.wuda.wuxue.bean.adapterHelper.RootNode;
+import com.wuda.wuxue.bean.helper.RootNode;
 
 public class RootNodeProvider extends BaseNodeProvider {
     @Override

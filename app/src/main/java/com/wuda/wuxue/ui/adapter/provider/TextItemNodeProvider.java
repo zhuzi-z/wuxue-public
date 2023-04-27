@@ -1,7 +1,6 @@
 package com.wuda.wuxue.ui.adapter.provider;
 
 import android.view.Gravity;
-import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -10,7 +9,7 @@ import com.chad.library.adapter.base.entity.node.BaseNode;
 import com.chad.library.adapter.base.provider.BaseNodeProvider;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.wuda.wuxue.R;
-import com.wuda.wuxue.bean.adapterHelper.TextItemNode;
+import com.wuda.wuxue.bean.helper.TextItemNode;
 
 public class TextItemNodeProvider extends BaseNodeProvider {
     @Override

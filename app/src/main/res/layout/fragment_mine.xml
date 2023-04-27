@@ -53,7 +53,7 @@
             android:layout_marginEnd="24dp"
             android:drawableStart="@drawable/ic_first_page"
             android:drawablePadding="16dp"
-            android:drawableTint="#AA593F"
+            android:drawableTint="@color/CadetBlue"
             android:gravity="center_vertical"
             android:text="启动页"
             android:textSize="20sp"
@@ -68,7 +68,7 @@
             android:layout_marginEnd="24dp"
             android:drawableStart="@drawable/ic_notifications"
             android:drawablePadding="16dp"
-            android:drawableTint="#4ECBDB"
+            android:drawableTint="@color/PowderBlue"
             android:text="消息订阅"
             android:textSize="20sp" />
 
@@ -79,9 +79,9 @@
             android:layout_marginStart="24dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="24dp"
-            android:drawableStart="@drawable/ic_mode_night"
+            android:drawableStart="@drawable/ic_outline_dark_mode_24"
             android:drawablePadding="16dp"
-            android:drawableTint="#62A165"
+            android:drawableTint="@color/YuWeiHui"
             android:text="夜间模式"
             android:textSize="20sp" />
 
@@ -99,9 +99,9 @@
             android:layout_marginStart="24dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="24dp"
-            android:drawableStart="@drawable/ic_live_help"
+            android:drawableStart="@drawable/ic_help"
             android:drawablePadding="16dp"
-            android:drawableTint="#18678A"
+            android:drawableTint="@color/WuZhiLv"
             android:gravity="center_vertical"
             android:text="关于"
             android:textSize="20sp" />

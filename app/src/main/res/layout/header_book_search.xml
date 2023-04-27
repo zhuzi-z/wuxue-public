@@ -11,6 +11,10 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="关键词"
+        app:boxCornerRadiusBottomEnd="32dp"
+        app:boxCornerRadiusBottomStart="32dp"
+        app:boxCornerRadiusTopEnd="32dp"
+        app:boxCornerRadiusTopStart="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -67,6 +71,7 @@
         android:layout_height="wrap_content"
         android:text="检  索"
         android:textSize="20sp"
+        app:cornerRadius="32dp"
         app:icon="@drawable/ic_search"
         app:iconGravity="textStart"
         app:layout_constraintEnd_toEndOf="parent"
